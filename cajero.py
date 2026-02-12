@@ -34,11 +34,21 @@ def consultar_saldo():
 
 
 # TRANSACCIONES
-def retirar():
-    pass
+def retirar(usuario):
+    monto = float(input("Monto a retirar: "))
 
-def depositar():
-    pass
+    if usuario[usuario]["saldo"] >= monto:
+        usuario[usuario]["saldo"] -= monto
+        mostrar_historial.append(f"Retiro: {monto}")
+        print("Retiro exitoso")
+    else:
+        print("Fondos insuficientes")
+
+def depositar(usuario):
+    monto = float(input("Monto a depositar: "))
+    usuario[usuario]["saldo"] += monto
+    mostrar_historial.append(f"Deposito: {monto}")
+    print("Depósito exitoso")
 
 # mostrar historial
 def mostrar_historial():
