@@ -1,7 +1,32 @@
 # AUTENTICACION
-def login():
-    pass
 
+def modulo_seguridad():
+    """
+    Responsabilidad: Validar la identidad del usuario.
+    Retorna: True si el PIN es correcto, False si se agotan los intentos.
+    """
+    pin_secreto = "1234"
+    intentos_maximos = 3
+    
+    print("=== SISTEMA DE SEGURIDAD BANCARIA ===")
+    
+    for intento_actual in range(1, intentos_maximos + 1):
+        pin_ingresado = input(f"Intento {intento_actual}/{intentos_maximos} - Ingrese su PIN: ")
+        
+        if pin_ingresado == pin_secreto:
+            print("\n Verificación exitosa. Cargando sistema...")
+            return True
+        else:
+            print("PIN incorrecto.")
+
+    print("\nALERTA Demasiados intentos fallidos. Cuenta bloqueada.")
+    return False
+
+if __name__ == "__main__":
+        if modulo_seguridad():
+            print("Continuar al Menú Principal...")
+        else:
+            print("Saliendo del programa.")
 
 # CONSULTA DE SALDO
 def consultar_saldo():
