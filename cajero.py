@@ -1,7 +1,32 @@
 # AUTENTICACION
-def login():
-    pass
 
+def modulo_seguridad():
+    """
+    Responsabilidad: Validar la identidad del usuario.
+    Retorna: True si el PIN es correcto, False si se agotan los intentos.
+    """
+    pin_secreto = "1234"
+    intentos_maximos = 3
+    
+    print("=== SISTEMA DE SEGURIDAD BANCARIA ===")
+    
+    for intento_actual in range(1, intentos_maximos + 1):
+        pin_ingresado = input(f"Intento {intento_actual}/{intentos_maximos} - Ingrese su PIN: ")
+        
+        if pin_ingresado == pin_secreto:
+            print("\n Verificación exitosa. Cargando sistema...")
+            return True
+        else:
+            print("PIN incorrecto.")
+
+    print("\nALERTA Demasiados intentos fallidos. Cuenta bloqueada.")
+    return False
+
+if __name__ == "__main__":
+        if modulo_seguridad():
+            print("Continuar al Menú Principal...")
+        else:
+            print("Saliendo del programa.")
 
 # CONSULTA DE SALDO
 def consultar_saldo():
@@ -9,11 +34,21 @@ def consultar_saldo():
 
 
 # TRANSACCIONES
-def retirar():
-    pass
+def retirar(usuario):
+    monto = float(input("Monto a retirar: "))
 
-def depositar():
-    pass
+    if usuario[usuario]["saldo"] >= monto:
+        usuario[usuario]["saldo"] -= monto
+        mostrar_historial.append(f"Retiro: {monto}")
+        print("Retiro exitoso")
+    else:
+        print("Fondos insuficientes")
+
+def depositar(usuario):
+    monto = float(input("Monto a depositar: "))
+    usuario[usuario]["saldo"] += monto
+    mostrar_historial.append(f"Deposito: {monto}")
+    print("Depósito exitoso")
 
 # mostrar historial
 def mostrar_historial():
@@ -44,7 +79,55 @@ def menu(usuario):
             break
         else:
             print("Opción inválida")
+def depositar():
+    pass
 
+
+def main():
+    pass
+
+#  mostrar_historial
+def mostrar_historial():
+    if not mostrar_historial:
+        print("No hay movimientos registrados.")
+    else:
+        print("===== HISTORIAL =====")
+        for movimiento in mostrar_historial:
+            print(movimiento)
+
+
+def menu(usuario):
+    while True:
+        print("\n===== CAJERO AUTOMATICO =====")
+        print("1. Consultar saldo")
+        print("2. Retirar dinero")
+        print("3. Depositar dinero")
+        print("4. Ver historial")
+        print("5. Salir")
+
+        opcion = input("Seleccione una opción: ")
+
+        if opcion == "1":
+            consultar_saldo(usuario)
+        elif opcion == "2":
+            retirar(usuario)
+        elif opcion == "3":
+            depositar(usuario)
+        elif opcion == "4":
+            mostrar_historial()   
+        elif opcion == "5":
+            print("Gracias por usar el cajero")
+            break
+        else:
+            print("Opción inválida")
+
+def login():
+    usuario = input("Ingrese su nombre de usuario: ")
+    if usuario in usuario and modulo_seguridad(usuario):
+        return usuario
+    else:
+        print("Usuario inválido o PIN incorrecto")
+        return None
 
 # ================== MAIN ==================
 def main():
