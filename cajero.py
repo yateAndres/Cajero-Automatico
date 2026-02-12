@@ -20,8 +20,13 @@ def main():
     pass
 
 #  mostrar_historial
-def  mostrar_historial():
-    pass
+def mostrar_historial():
+    if not mostrar_historial:
+        print("No hay movimientos registrados.")
+    else:
+        print("===== HISTORIAL =====")
+        for movimiento in mostrar_historial:
+            print(movimiento)
 
 
 def menu(usuario):
